@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-docker build -t  react-app .
+docker build -t  react-deploy .

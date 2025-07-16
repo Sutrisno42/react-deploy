@@ -1,7 +1,7 @@
 services:
-  react-app:
-    image: react-app
-    container_name: react-app
+  react-deploy:
+    image: react-deploy
+    container_name: react-deploy
     restart: always
     ports:
       - 3069:80

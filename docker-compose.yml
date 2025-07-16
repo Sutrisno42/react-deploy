@@ -1,0 +1,7 @@
+services:
+  react-app:
+    image: react-app
+    container_name: react-app
+    restart: always
+    ports:
+      - 3000:80

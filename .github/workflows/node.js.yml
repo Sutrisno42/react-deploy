@@ -27,8 +27,8 @@ jobs:
       runs-on: ["react-deploy"]
       needs: build
       steps:
-        # - name: Debug .env File
-        #   run: cat .env
+        - name: Docker Compose Build 
+          run: docker compose build
 
         - name: Docker Compose Up
           run: docker compose up -d

@@ -4,4 +4,4 @@ services:
     container_name: react-app
     restart: always
     ports:
-      - 3000:80
+      - 3069:80

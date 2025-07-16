@@ -14,21 +14,35 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      - name: Checkout
+        uses: actions/checkout@v4
+
+          # echo "VITE_APP_BACKEND_ASSET_URL=${{vars.VITE_APP_BACKEND_ASSET_URL}}" >> .env
+          # echo "VITE_APP_BACKEND_URL=${{vars.VITE_APP_BACKEND_URL}}" >> .env
+          # echo "VITE_APP_KEY=${{vars.VITE_APP_KEY}}" >> .env
+      # - name: Setup Environment Variables
+      #   run: |
+      #     echo "${{vars.ENVSTAGING}}" > .env
+      #     echo "File .env dibuat di: $(pwd)"
+      #     ls -la
+      - name: Setup Node
+        run: |
+          chmod +x create_image.sh
+          ./create_image.sh
+
+    # - uses: actions/checkout@v4
+    # - name: Use Node.js ${{ matrix.node-version }}
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
+    #     cache: 'npm'
+    # - run: npm ci
+    # - run: npm run build --if-present
+    # - run: npm test
   deploy:
       runs-on: ["react-deploy"]
       needs: build
       steps:
-        - name: Docker Compose Build 
-          run: docker compose build
 
         - name: Docker Compose Up
           run: docker compose up -d
